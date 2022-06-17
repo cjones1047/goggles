@@ -8,4 +8,19 @@
 // 7. tree
 // 8. recorder
 // 9. treadmill
-// 10. 
+// 10. plane
+// 11. sky
+// 12. star
+// 13. tank
+// 14. pokemon
+// 15. zelda
+// 16. ray
+// 17. blanket
+// 18. mansion
+// 19. glove
+// 20. flag
+// 21. armadillo
+// 22. locomotive
+// 23. spider
+// 24. chess
+// 25. thermometer
