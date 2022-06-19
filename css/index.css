@@ -1,0 +1,43 @@
+#home-page {
+    height: 800px;
+    text-align: center;
+}
+
+#header {
+    height: 30%;
+    font-size: 80px;
+}
+
+#game-info {
+    height: fit-content;
+    margin: 0 25%;
+    font-size: x-large;
+}
+
+@media screen and (max-width: 1000px) {
+    #game-info {
+        margin: 0 5%;
+    }
+}
+
+.button-row {
+    height: 150px;
+}
+
+/* #go-button {
+} */
+
+#play-icon {
+    height: 30px;
+    width: 30px;
+}
+
+#input-box {
+    height: 15%;
+    margin: 0 30%;
+    margin-bottom: 2.5%;
+}
+
+#play-page {
+    display: none;
+}
