@@ -1,5 +1,8 @@
 body {
-    background-image: url(/Users/CaseyJr/sei_ice_pops/projects/project-1/project-1/background-image/background.png);
+    background-size: 100% 840px;
+    background-image: url(../background-image/background.png);
+    color: rgb(108, 104, 104);
+    text-shadow: 1px 1px 0px rgb(13, 13, 13);
 }
 
 #home-page {
@@ -25,6 +28,7 @@ body {
 @media screen and (max-width: 1000px) {
     #game-info {
         margin: 0 5%;
+        margin-bottom: 25px;
     }
 }
 
@@ -56,3 +60,15 @@ body {
     0% {opacity: 0;}
     100% {opacity: 1;}
 }
+
+@keyframes slidein {
+    from {
+      margin-left: 100%;
+      width: 300%;
+    }
+
+    to {
+      margin-left: 0%;
+      width: 100%;
+    }
+  }
