@@ -1,6 +1,13 @@
+body {
+    background-image: url(/Users/CaseyJr/sei_ice_pops/projects/project-1/project-1/background-image/background.png);
+}
+
 #home-page {
+    display: block;
     height: 800px;
     text-align: center;
+    animation-iteration-count: 1;
+    animation-play-state: paused;
 }
 
 #header {
@@ -12,6 +19,7 @@
     height: fit-content;
     margin: 0 25%;
     font-size: x-large;
+    margin-bottom: 25px;
 }
 
 @media screen and (max-width: 1000px) {
@@ -20,16 +28,14 @@
     }
 }
 
-.button-row {
-    height: 150px;
+#play-button-row {
+    border-style: hidden;
+    background: transparent;
 }
 
-/* #go-button {
-} */
-
 #play-icon {
-    height: 30px;
-    width: 30px;
+    animation-iteration-count: 1;
+    animation-play-state: paused;
 }
 
 #input-box {
@@ -40,4 +46,13 @@
 
 #play-page {
     display: none;
+}
+
+.fade-in-page {
+    animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
 }

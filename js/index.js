@@ -24,3 +24,16 @@
 // 23. spider
 // 24. chess
 // 25. thermometer
+
+document.getElementById('play-icon').addEventListener('click',event => {
+    document.getElementById('play-icon').style.WebkitAnimationPlayState = "running";
+    setTimeout(() =>
+        document.getElementById('home-page').style.WebkitAnimationPlayState = "running"
+    ,1500)
+    setTimeout(() =>
+        document.getElementById('home-page').style.display = "none"
+    ,2500)
+    setTimeout(() =>
+        document.getElementById('play-page').style.display = "block"
+    ,3000)
+})
