@@ -1,12 +1,12 @@
 body {
     background-size: 100% 840px;
     background-image: url(../background-image/background.png);
-    color: rgb(108, 104, 104);
-    text-shadow: 1px 1px 0px rgb(13, 13, 13);
+    color: rgb(113, 103, 103);
+    text-shadow: 0px 2px 0px rgb(255, 255, 255);
 }
 
 #home-page {
-    display: block;
+    display: none;
     height: 800px;
     text-align: center;
     animation-iteration-count: 1;
@@ -15,7 +15,9 @@ body {
 
 #header {
     height: 30%;
-    font-size: 80px;
+    font-size: 120px;
+    font-family: Reglisse;
+    color: rgb(146, 146, 146);
 }
 
 #game-info {
@@ -38,6 +40,7 @@ body {
 }
 
 #play-icon {
+    color: rgb(108, 104, 104);
     animation-iteration-count: 1;
     animation-play-state: paused;
 }
@@ -49,11 +52,8 @@ body {
 }
 
 #play-page {
-    display: none;
-}
-
-.fade-in-page {
-    animation: fadeIn 1s;
+    display: block;
+    animation: slideInFromTop 1.5s;
 }
 
 @keyframes fadeIn {
@@ -61,14 +61,13 @@ body {
     100% {opacity: 1;}
 }
 
-@keyframes slidein {
+@keyframes slideInFromTop {
     from {
-      margin-left: 100%;
-      width: 300%;
+        overflow: hidden;
+        margin-top: -200%;
     }
 
     to {
-      margin-left: 0%;
-      width: 100%;
+        margin-top: 0%;
     }
   }
