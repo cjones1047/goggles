@@ -12,8 +12,8 @@
 // 11. sky
 // 12. star
 // 13. tank
-// 14. 
-// 15. zelda
+// 14. kitten
+// 15. ukelele
 // 16. ray
 // 17. blanket
 // 18. mansion
@@ -26,20 +26,34 @@
 // 25. thermometer
 
 const secretWords = [
-    mountain,
-    fish,
-    bench,
-    iceberg,
-    game,
-    ragnarok,
-    tree,
-    recorder,
-    treadmill,
-    plane,
-    sky,
-    tank,
-
+    'mountain',
+    'fish',
+    'bench',
+    'iceberg',
+    'game',
+    'ragnarok',
+    'tree',
+    'recorder',
+    'treadmill',
+    'plane',
+    'sky',
+    'star',
+    'tank',
+    'kitten',
+    'ukelele',
+    'ray',
+    'blanket',
+    'mansion',
+    'glove',
+    'flag',
+    'armadillo',
+    'locomotive',
+    'spider',
+    'chess',
+    'thermometer'
 ]
+
+const hintImages = []
 
 document.getElementById('play-icon').addEventListener('click',event => {
     document.getElementById('play-icon').style.WebkitAnimationPlayState = "running";
@@ -55,32 +69,3 @@ document.getElementById('play-icon').addEventListener('click',event => {
     ,2000)
 })
 
-document.addEventListener('DOMContentLoaded',() => {
-    console.log('DOM Loaded')
-})
-
-const chooseImages = (dataJSON) => {
-    for(let i=0;i<dataJSON.data.children.length;i++) {
-        if(dataJSON.data.children[i].data.url.slice(-3) === 'jpg') {
-            slideShowImageURLs.push(dataJSON.data.children[i].data.url)
-        }
-    }
-
-    runSlideshow = setInterval(showSlide,5000);
-}
-
-document.getElementById('search-button').addEventListener('click', (event) => {
-    event.preventDefault();
-    userText = document.getElementById('input-box').value.replaceAll(' ', '+')
-    console.log(userText)
-    document.getElementById('search-button').value = 'loading...'
-    
-    fetch(`https://www.reddit.com/search.json?q=${userText}+nsfw:no&limit=100`) 
-        .then((responseData)=> responseData.json())
-        .then((jsonData)=>{
-            chooseImages(jsonData)
-        })
-        .catch((jsonData) => {
-            console.log('ERROR')
-        })
-})
