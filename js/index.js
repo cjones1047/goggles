@@ -25,7 +25,7 @@
 // 24. chess
 // 25. thermometer
 
-const secretWords = [
+const secretWordList = [
     'mountain',
     'fish',
     'bench',
@@ -53,19 +53,69 @@ const secretWords = [
     'thermometer'
 ]
 
-const hintImages = []
+const hintImagesUrls = []
+
+let secretWord;
+
+const imageFading = [
+    {opacity: 1},
+    {opacity: 0},
+    {opacity: 1}
+]
+
+const imageFadingTiming = {
+    duration: 4000,
+    iterations: 1
+}
 
 document.getElementById('play-icon').addEventListener('click',event => {
     document.getElementById('play-icon').style.WebkitAnimationPlayState = "running";
-    setTimeout(() =>
+    setTimeout(() => {
         document.getElementById('home-page').style.WebkitAnimationPlayState = "running"
-    ,1000)
-    setTimeout(() =>
+    },1000)
+    setTimeout(() => {
         document.getElementById('home-page').style.display = "none"
-        
-    ,2000)
-    setTimeout(() =>
+    },2000)
+    setTimeout(() => {
         document.getElementById('play-page').style.display = "block"
-    ,2000)
+    },2500)
+    // setTimeout(() => {
+    //     document.getElementById('image-1').src = hintImagesUrls[0]
+    // },3000)
+    setTimeout(() => {
+        document.getElementById('image-1').animate(imageFading, imageFadingTiming)
+    },4000)
+    setTimeout(() => {
+        document.getElementById('image-1').src = hintImagesUrls[0]
+    },6000)
+})
+
+const chooseImages = (dataJSON) => {
+    for(let i=hintImagesUrls.length;hintImagesUrls.length<6;i++) { // only 6 images given
+        if(dataJSON.data.children[i].data.url.slice(-3) === 'jpg') {
+            if(dataJSON.data.children[i].data.is_reddit_media_domain === true
+            && hintImagesUrls.find(element => element === dataJSON.data.children[i].data.url) === undefined) {
+                hintImagesUrls.push(dataJSON.data.children[i].data.url)
+                console.log(i+":"+dataJSON.data.children[i].data.url)
+            }
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded',() => {
+    console.log('DOM Loaded')
+    const randomWordIndex = Math.floor(Math.random() * (secretWordList.length-1))
+    secretWord = secretWordList[randomWordIndex]
+    console.log('Random word selected: '+secretWord)
+    
+    fetch(`https://www.reddit.com/r/pics/search.json?q=${secretWord}+nsfw:no&limit=100`) 
+        .then((responseData)=> responseData.json())
+        .then((jsonData)=>{
+            console.log(jsonData) 
+            chooseImages(jsonData)
+        })
+        .catch((jsonData) => {
+            console.log('ERROR')
+        })
 })
 

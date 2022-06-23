@@ -7,7 +7,7 @@ body {
 }
 
 #home-page {
-    display: none;
+    display: block;
     height: 800px;
     text-align: center;
     animation-iteration-count: 1;
@@ -47,11 +47,13 @@ body {
 }
 
 
+
+
 /* below here is formatting only the play-page */
 
 
 #play-page {
-    display: block;
+    display: none;
     animation: slideInFromTop 1.5s;
 }
 
@@ -64,7 +66,6 @@ body {
 
 .hint-image {
     width: 33%;
-    height: fit-content;
     max-height: 200px;
     padding: 10px;
     border-radius: 40px;
@@ -74,6 +75,11 @@ body {
     height: 15%;
     margin: 0 30%;
     margin-bottom: 2.5%;
+}
+
+.fade-in-hint {
+    animation: fadeIn 1s;
+    animation-play-state: paused;
 }
 
 @keyframes fadeIn {
