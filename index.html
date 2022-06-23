@@ -21,13 +21,9 @@
             </div>
             <div id="game-info" class="row">
                 <div>
-                    Welcome to Goggles, a game kinda like charades where you will be using what you see to guess a secret word. But unlike charades, you will be looking at pictures as your hints instead of crazy gestures.<br><br>Hit the button below to get started!
+                    Welcome to Goggles, a game kinda like charades where you will be using what you see to guess a secret word. But unlike charades, you will be looking at pictures as your hints instead of crazy gestures.<br><br>The secret word will ALWAYS be a SINGULAR NOUN<br><br>Hit the button below to get started!
                 </div>
             </div>
-            <!-- <div class="button-row" class="row"> -->
-                <!-- <input id="go-button" type="submit" data-mdb-toggle="animation" data-mdb-animation-reset="true" data-mdb-animation="tada" value="Let's Play"> -->
-            
-            <!-- </div> -->
             <button id="play-button-row">
                 <i id="play-icon" class="fa-solid fa-circle-play fa-7x fa-beat" style="--fa-animation-duration: 0.75s;"></i>
             </button>
@@ -44,11 +40,20 @@
                 <img id="image-5" class="hint-image" src="background-image/backround-gray.jpeg" alt="Fifth Image">
                 <img id="image-6" class="hint-image" src="background-image/backround-gray.jpeg" alt="Sixth Image">
             </div>
-            <div>
-                <div id="hint"></div>
-                <input id="input-field" placeholder="Hint: the word is always a noun and singular">
+            <div class="row justify-content-center">
+                <div id="guess-section">
+                    <label><b>Enter guess below:</b></label>
+                    <div class="input-group mb-3">
+                        <input id="guess-text" type="text" class="form-control" placeholder="Recipient's username">
+                        <div class="input-group-append">
+                          <button id="guess-button" class="btn btn-outline-secondary" type="button">Submit</button>
+                        </div>
+                      </div>
+                    <small id="extra-hint" class="form-text"></small>
+                </div>
             </div>
         </div>
+        
     <body>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

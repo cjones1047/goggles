@@ -57,6 +57,8 @@ const hintImagesUrls = []
 
 let secretWord;
 
+let guessesMade = 0;
+
 const imageFading = [
     {opacity: 1},
     {opacity: 0},

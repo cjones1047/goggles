@@ -7,7 +7,7 @@ body {
 }
 
 #home-page {
-    display: block;
+    display: none;
     height: 800px;
     text-align: center;
     animation-iteration-count: 1;
@@ -53,7 +53,7 @@ body {
 
 
 #play-page {
-    display: none;
+    display: block;
     animation: slideInFromTop 1.5s;
 }
 
@@ -69,17 +69,27 @@ body {
     max-height: 200px;
     padding: 10px;
     border-radius: 40px;
+    object-fit: cover;
 }
 
-#input-box {
-    height: 15%;
-    margin: 0 30%;
-    margin-bottom: 2.5%;
+#guess-section {
+    width: 60%;
+    margin-top: 20px;
+    display: inline;
 }
 
-.fade-in-hint {
-    animation: fadeIn 1s;
-    animation-play-state: paused;
+.form-control:focus {
+    border-color: #4feff8;
+    box-shadow: 0 0 0 0.2rem #4feff8;
+}
+
+#guess-text::placeholder {
+    font-style: italic;
+}
+
+#extra-hint {
+    font-size: 20px;
+    color: rgb(64, 64, 64);
 }
 
 @keyframes fadeIn {
