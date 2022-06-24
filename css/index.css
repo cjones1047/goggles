@@ -131,24 +131,52 @@ form {
 /* below here is for the win-page */
 
 
-
 #win-page {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 600px;
+}
+
+#celebration-row {
+    justify-content: center;
+    width: 80%;
+}
+
+#celebrate {
+    object-fit: cover;
+    width: 100%;
+    height: 500px;
+    margin-top: 10%;
+    border-radius: 100px;
+}
+
+#text-row {
     display: block;
-    /* starting value above should be 'none' */
-    height: 800px;
-    margin-bottom: 60px;
+    position: absolute;
+    place-self: center;
+    font-family: Reglisse;
+    color: #4feff8;
+    font-size: 15vw;
 }
 
-#trophy-icon {
-    font-size: 40vw;
-    text-align: center;
-    text-shadow:rgb(97, 95, 95)
+#reset-button {
+    margin: 0 auto;
+    justify-content: center;
+    display: flex;
+    width: 150px;
+    height: 120px;
+    font-size: 50px;
+    line-height: 50px;
+    border-radius: 40px;
+    border-width: 5px;
+    border-color: #4feff8;
+    background-color: #606060;
+    color: #4feff8;
 }
 
 
-
-/* below here are all the keyframes */
-
+/* below here are all keyframes */
 
 
 
