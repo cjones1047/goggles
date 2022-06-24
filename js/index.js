@@ -162,3 +162,9 @@ function disableUserInput () {
     newEl.appendChild(child)
     console.log('user input disabled')
 }
+
+document.getElementById('reset-button').addEventListener('click', (event) => {
+    event.preventDefault()
+    
+
+})

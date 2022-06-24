@@ -128,11 +128,15 @@ form {
 
 
 
+
 /* below here is for the win-page */
 
 
+
+
 #win-page {
-    display: flex;
+    display: none;
+    /* above should be set to 'none' on start */
     justify-content: center;
     width: 100%;
     height: 600px;
@@ -151,7 +155,7 @@ form {
     border-radius: 100px;
 }
 
-#text-row {
+#win-text-row {
     display: block;
     position: absolute;
     place-self: center;
@@ -160,7 +164,7 @@ form {
     font-size: 15vw;
 }
 
-#reset-button {
+#win-reset-button {
     margin: 0 auto;
     justify-content: center;
     display: flex;
@@ -174,6 +178,61 @@ form {
     background-color: #606060;
     color: #4feff8;
 }
+
+
+
+
+/* below here is for the loss-page */
+
+
+
+
+#loss-page {
+    display: none;
+    /* above should be set to 'none' on start */
+    justify-content: center;
+    width: 100%;
+    height: 600px;
+}
+
+#game-over-row {
+    justify-content: center;
+    width: 80%;
+}
+
+#game-over {
+    object-fit: cover;
+    width: 100%;
+    height: 500px;
+    margin-top: 10%;
+    border-radius: 100px;
+}
+
+#loss-text-row {
+    display: block;
+    position: absolute;
+    place-self: center;
+    font-family: Reglisse;
+    color: #4feff8;
+    font-size: 15vw;
+}
+
+#loss-reset-button {
+    margin: 0 auto;
+    justify-content: center;
+    display: flex;
+    width: 150px;
+    height: 120px;
+    font-size: 50px;
+    line-height: 50px;
+    border-radius: 40px;
+    border-width: 5px;
+    border-color: #4feff8;
+    background-color: #606060;
+    color: #4feff8;
+}
+
+
 
 
 /* below here are all keyframes */
