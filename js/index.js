@@ -92,7 +92,7 @@ document.getElementById('play-icon').addEventListener('click',event => {
 })
 
 const chooseImages = (dataJSON) => {
-    for(let i=hintImagesUrls.length;hintImagesUrls.length<6;i++) { // only 6 images given
+    for(let i=hintImagesUrls.length;hintImagesUrls.length<6;i++) { // only 6 images hints in total
         if(dataJSON.data.children[i].data.url.slice(-3) === 'jpg') {
             if(dataJSON.data.children[i].data.is_reddit_media_domain === true
             && hintImagesUrls.find(element => element === dataJSON.data.children[i].data.url) === undefined) {
@@ -123,12 +123,42 @@ document.addEventListener('DOMContentLoaded',() => {
 guessButton.addEventListener('click', (event) => {
     if(document.getElementById('guess-text').value !== '') {
         event.preventDefault()
-    }
-    const guessText = document.getElementById('guess-text')
-    console.log(`Event input`)
-    console.log(guessText.value)
-    if(guessText.value.toLowerCase() === secretWord) {
+        document.getElementById('guess-text').style.WebkitAnimationPlayState = "running";
+    } else {return}
+    
+    guessesMade++
+    let userGuess = document.getElementById('guess-text').value
+    console.log(`Event input:`)
+    console.log(userGuess)
+    if(userGuess.toLowerCase() === secretWord) {
         console.log('winner')
+        disableUserInput()
+        console.log('disableUserInput function ran')
+        console.log('Guesses made: '+guessesMade)
+    } else {   // what to do if user's guess is wrong
+        console.log('Guesses made: '+guessesMade)
+        document.getElementById('guess-text').value = null
+        if(guessesMade === 3) {
+            document.getElementById('guess-text').placeholder = 'Another hint: ***';
+        }
+        document.getElementById('guess-text').classList.add('is-invalid')
+        document.getElementById(`image-${guessesMade+1}`).animate(imageFading, imageFadingTiming)
+        setTimeout(() => {
+            document.getElementById(`image-${guessesMade+1}`).src = hintImagesUrls[guessesMade]
+        }, 2000)
+        setTimeout(() => {
+            document.getElementById('guess-text').classList.remove('is-invalid')
+            document.getElementById('guess-text').style.WebkitAnimationPlayState = "paused"
+        }, 1000)
     }
 })
 
+function disableUserInput () {
+    const parent = document.getElementById('guess-section')
+    const child = document.getElementById('guess-input')
+    const newEl = document.createElement('fieldset')
+    newEl.setAttribute('disabled', '')
+    parent.appendChild(newEl)
+    newEl.appendChild(child)
+    console.log('user input disabled')
+}
