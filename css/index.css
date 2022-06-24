@@ -108,6 +108,11 @@ form {
     border-width: 0px;
 }
 
+#guess-button:focus {
+    box-shadow: none;
+    animation: buttonClicked 0.5s;
+}
+
 @keyframes fadeIn {
     0% {opacity: 0;}
     100% {opacity: 1;}
@@ -123,3 +128,17 @@ form {
         margin-top: 0%;
     }
   }
+
+@keyframes buttonClicked {
+    from {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.9);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}

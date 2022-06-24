@@ -59,6 +59,8 @@ let secretWord;
 
 let guessesMade = 0;
 
+const guessButton = document.getElementById('guess-button')
+
 const imageFading = [
     {opacity: 1},
     {opacity: 0},
@@ -81,9 +83,6 @@ document.getElementById('play-icon').addEventListener('click',event => {
     setTimeout(() => {
         document.getElementById('play-page').style.display = "block"
     },2500)
-    // setTimeout(() => {
-    //     document.getElementById('image-1').src = hintImagesUrls[0]
-    // },3000)
     setTimeout(() => {
         document.getElementById('image-1').animate(imageFading, imageFadingTiming)
     },4000)
@@ -121,5 +120,15 @@ document.addEventListener('DOMContentLoaded',() => {
         })
 })
 
-document.getElementById('')
+guessButton.addEventListener('click', (event) => {
+    if(document.getElementById('guess-text').value !== '') {
+        event.preventDefault()
+    }
+    const guessText = document.getElementById('guess-text')
+    console.log(`Event input`)
+    console.log(guessText.value)
+    if(guessText.value.toLowerCase() === secretWord) {
+        console.log('winner')
+    }
+})
 
