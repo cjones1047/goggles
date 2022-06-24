@@ -42,14 +42,13 @@
             </div>
             <div class="row justify-content-center">
                 <div id="guess-section">
-                    <label><b>Enter guess below:</b></label>
-                    <div class="input-group mb-3">
-                        <input id="guess-text" type="text" class="form-control" placeholder="Recipient's username">
-                        <div class="input-group-append">
-                          <button id="guess-button" class="btn btn-outline-secondary" type="button">Submit</button>
+                    <label id="guess-label"><b>Enter guess below:</b></label>
+                    <form id="guess-input" class="justify-content-center">
+                        <div id="guess-text-box" class="form-group ">
+                          <input id="guess-text" type="text" class="form-control form-control-lg" placeholder="e.g. animal, bank, person, etc..." required>
                         </div>
-                      </div>
-                    <small id="extra-hint" class="form-text"></small>
+                        <button id="guess-button" type="submit" class="btn btn-primary">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>
