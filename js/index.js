@@ -72,6 +72,8 @@ const imageFadingTiming = {
     iterations: 1
 }
 
+const 
+
 document.getElementById('play-icon').addEventListener('click',event => {
     document.getElementById('play-icon').style.WebkitAnimationPlayState = "running";
     setTimeout(() => {
@@ -163,8 +165,18 @@ function disableUserInput () {
     console.log('user input disabled')
 }
 
-document.getElementById('reset-button').addEventListener('click', (event) => {
+document.getElementById('win-reset-button').addEventListener('click', (event) => {
     event.preventDefault()
-    
+    resetGame()
 
 })
+
+document.getElementById('loss-reset-button').addEventListener('click', (event) => {
+    event.preventDefault()
+    resetGame()
+
+})
+
+function resetGame () {
+
+}

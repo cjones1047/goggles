@@ -49,9 +49,7 @@ body {
 
 
 
-
 /* below here is formatting only the play-page */
-
 
 
 
@@ -128,9 +126,7 @@ form {
 
 
 
-
 /* below here is for the win-page */
-
 
 
 
@@ -140,6 +136,7 @@ form {
     justify-content: center;
     width: 100%;
     height: 600px;
+    animation: slideInFromTop 1s;
 }
 
 #celebration-row {
@@ -181,18 +178,17 @@ form {
 
 
 
-
 /* below here is for the loss-page */
 
 
 
-
 #loss-page {
-    display: none;
+    display: flex;
     /* above should be set to 'none' on start */
     justify-content: center;
     width: 100%;
     height: 600px;
+    animation: slideInFromTop 1s;
 }
 
 #game-over-row {
@@ -201,11 +197,11 @@ form {
 }
 
 #game-over {
-    object-fit: cover;
     width: 100%;
-    height: 500px;
-    margin-top: 10%;
-    border-radius: 100px;
+    max-width: 800px;
+    height: 550px;
+    margin-top: 50px;
+    border-radius: 20%;
 }
 
 #loss-text-row {
@@ -227,11 +223,11 @@ form {
     line-height: 50px;
     border-radius: 40px;
     border-width: 5px;
-    border-color: #4feff8;
+    border-color: white;
     background-color: #606060;
     color: #4feff8;
+    transform: translate(0px, 150%);
 }
-
 
 
 
