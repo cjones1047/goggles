@@ -1,13 +1,12 @@
 body {
-    background-size: 100% 840px;
+    background-size: 100% 100vh;
     background-image: url(../background-image/background.png);
     color: rgb(113, 103, 103);
     text-shadow: 0px 2px 0px rgb(255, 255, 255);
-    height: 800px;
 }
 
 #home-page {
-    display: none;  
+    display: block;  
     /* starting value above should be 'block' */
     height: 800px;
     text-align: center;
@@ -24,14 +23,14 @@ body {
 
 #game-info {
     height: fit-content;
-    margin: 0 25%;
-    font-size: 19px;
+    margin: 0 20%;
+    font-size: 21px;
     margin-bottom: 25px;
 }
 
 @media screen and (max-width: 1000px) {
     #game-info {
-        margin: 0 5%;
+        margin: 0 1%;
         margin-bottom: 25px;
     }
 }
@@ -61,14 +60,15 @@ body {
 
 .image-row {
     width: 100%;
-    max-width: 700px;
+    max-width: 1000px;
     margin: 0 auto;
-    max-height: 200px;
+    max-height: 250px;
 }
 
 .hint-image {
     width: 33%;
-    max-height: 200px;
+    min-height: 230px;
+    max-height: 250px;
     padding: 10px;
     border-radius: 40px;
     object-fit: cover;
@@ -183,7 +183,7 @@ form {
 
 
 #loss-page {
-    display: flex;
+    display: none;
     /* above should be set to 'none' on start */
     justify-content: center;
     width: 100%;

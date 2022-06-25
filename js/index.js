@@ -55,24 +55,52 @@ const secretWordList = [
 
 const hintImagesUrls = []
 
+const previousGuesses = []
+
 let secretWord;
 
 let guessesMade = 0;
 
 const guessButton = document.getElementById('guess-button')
 
-const imageFading = [
-    {opacity: 1},
-    {opacity: 0},
-    {opacity: 1}
-]
+const imageFading = {
+    animation: [
+        {opacity: 1},
+        {opacity: 0},
+        {opacity: 1}
+    ],
 
-const imageFadingTiming = {
-    duration: 4000,
-    iterations: 1
+    timing: {
+        duration: 4000,
+        iterations: 1
+    }
 }
 
-const 
+const fadeIn = {
+    animation: [
+        {opacity: 0},
+        {opacity: 1}
+    ],
+
+    timing: {
+        duration: 1000,
+        iterations: 1,
+        easing: "ease-in"
+    }
+}
+
+const flipHint = {
+    animation: [
+        {transform: 'scale(0.5)'},
+        {transform: 'scale(0)'},
+    ],
+
+    timing: {
+        duration: 1000,
+        iterations: 1,
+        easing: "ease-in"
+    }
+}
 
 document.getElementById('play-icon').addEventListener('click',event => {
     document.getElementById('play-icon').style.WebkitAnimationPlayState = "running";
@@ -86,7 +114,7 @@ document.getElementById('play-icon').addEventListener('click',event => {
         document.getElementById('play-page').style.display = "block"
     },2500)
     setTimeout(() => {
-        document.getElementById('image-1').animate(imageFading, imageFadingTiming)
+        document.getElementById('image-1').animate(imageFading.animation, imageFading.timing)
     },4000)
     setTimeout(() => {
         document.getElementById('image-1').src = hintImagesUrls[0]
@@ -106,6 +134,7 @@ const chooseImages = (dataJSON) => {
 }
 
 document.addEventListener('DOMContentLoaded',() => {
+    document.getElementById('home-page').animate(fadeIn.animation, fadeIn.timing)
     console.log('DOM Loaded')
     const randomWordIndex = Math.floor(Math.random() * (secretWordList.length-1))
     secretWord = secretWordList[randomWordIndex]
@@ -132,19 +161,23 @@ guessButton.addEventListener('click', (event) => {
     let userGuess = document.getElementById('guess-text').value
     console.log(`Event input:`)
     console.log(userGuess)
-    if(userGuess.toLowerCase() === secretWord) {
+    if(userGuess.toLowerCase() === secretWord) { // user's guess is correct
         console.log('winner')
         disableUserInput()
         console.log('disableUserInput function ran')
         console.log('Guesses made: '+guessesMade)
-    } else {   // what to do if user's guess is wrong
+
+    } else {   // user's guess is wrong
         console.log('Guesses made: '+guessesMade)
         document.getElementById('guess-text').value = null
         if(guessesMade === 3) {
             document.getElementById('guess-text').placeholder = 'Another hint: ***';
         }
+        if(guessesMade > 0) {
+            document.getElementById('guess-label').animate(flipHint.animation,flipHint.timing)
+        }
         document.getElementById('guess-text').classList.add('is-invalid')
-        document.getElementById(`image-${guessesMade+1}`).animate(imageFading, imageFadingTiming)
+        document.getElementById(`image-${guessesMade+1}`).animate(imageFading.animation, imageFading.timing)
         setTimeout(() => {
             document.getElementById(`image-${guessesMade+1}`).src = hintImagesUrls[guessesMade]
         }, 2000)
@@ -167,16 +200,25 @@ function disableUserInput () {
 
 document.getElementById('win-reset-button').addEventListener('click', (event) => {
     event.preventDefault()
-    resetGame()
+    resetGame(event)
 
 })
 
 document.getElementById('loss-reset-button').addEventListener('click', (event) => {
     event.preventDefault()
-    resetGame()
+    resetGame(event)
 
 })
 
-function resetGame () {
+function userWins () {
 
+}
+
+function resetGame (event) {
+    if (event.target === document.getElementById('win-reset-button')) {
+        console.log("User won")
+    }
+    if (event.target === document.getElementById('loss-reset-button')) {
+        console.log("User lost")
+    }
 }
