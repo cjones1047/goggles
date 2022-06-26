@@ -265,6 +265,7 @@ function resetGame (event) {
             document.getElementById('win-text-row').style.fontSize = '7vw'
             document.getElementById('win-text-row').innerText = 'You got every word!'
             document.getElementById('win-reset-button').remove()
+            return
         } 
         window.location.reload()
     }
