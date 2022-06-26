@@ -86,6 +86,7 @@ form {
 #guess-label {
     margin-bottom: 10px;
     font-size: 23px;
+    font-weight: bold;
 }
 
 #guess-text-box {

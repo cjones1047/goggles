@@ -89,16 +89,28 @@ const fadeIn = {
     }
 }
 
-const flipHint = {
+const fadeOut = {
     animation: [
-        {transform: 'scale(0.5)'},
-        {transform: 'scale(0)'},
+        {opacity: 1},
+        {opacity: 0}
     ],
 
     timing: {
-        duration: 1000,
+        duration: 1500,
         iterations: 1,
         easing: "ease-in"
+    }
+}
+
+const flipHint = {
+    animation: [
+        {transform: 'rotateX(360deg)'}
+    ],
+
+    timing: {
+        duration: 500,
+        iterations: 1,
+        easing: "ease-out"
     }
 }
 
@@ -166,15 +178,42 @@ guessButton.addEventListener('click', (event) => {
         disableUserInput()
         console.log('disableUserInput function ran')
         console.log('Guesses made: '+guessesMade)
+        setTimeout(() => {
+            document.getElementById('play-page').animate(fadeOut.animation,fadeOut.timing)
+        }, 750)
+        setTimeout(() => {
+            document.getElementById('play-page').style.display = 'none'
+        }, 2200)
+        setTimeout(() => {
+            document.getElementById('win-page').style.display = 'flex'
+            return
+        }, 2400)
 
     } else {   // user's guess is wrong
         console.log('Guesses made: '+guessesMade)
         document.getElementById('guess-text').value = null
         if(guessesMade === 3) {
-            document.getElementById('guess-text').placeholder = 'Another hint: ***';
+            const anotherHint = `${secretWord.slice(0,1)}${'*'.repeat(secretWord.length-1)}`
+            document.getElementById('guess-text').placeholder = `Another hint: ${anotherHint}`;
         }
         if(guessesMade > 0) {
+            previousGuesses.push(` ${userGuess}`)
             document.getElementById('guess-label').animate(flipHint.animation,flipHint.timing)
+            setTimeout(() => {
+                document.getElementById('guess-label').innerText = `Previous guesses: ${previousGuesses}`
+            }, flipHint.timing.duration/2)
+        }
+        if(guessesMade === 6) {
+            setTimeout(() => {
+                document.getElementById('play-page').animate(fadeOut.animation,fadeOut.timing)
+            }, 750)
+            setTimeout(() => {
+                document.getElementById('play-page').style.display = 'none'
+            }, 2200)
+            setTimeout(() => {
+                document.getElementById('loss-page').style.display = 'flex'
+                return
+            }, 2400)
         }
         document.getElementById('guess-text').classList.add('is-invalid')
         document.getElementById(`image-${guessesMade+1}`).animate(imageFading.animation, imageFading.timing)
@@ -210,15 +249,13 @@ document.getElementById('loss-reset-button').addEventListener('click', (event) =
 
 })
 
-function userWins () {
-
-}
-
 function resetGame (event) {
     if (event.target === document.getElementById('win-reset-button')) {
         console.log("User won")
+        window.location.reload()
     }
     if (event.target === document.getElementById('loss-reset-button')) {
         console.log("User lost")
+        window.location.reload()
     }
 }
