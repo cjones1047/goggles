@@ -25,7 +25,7 @@
 // 24. chess
 // 25. thermometer
 
-const secretWordList = [
+let secretWordList = [
     'mountain',
     'fish',
     'bench',
@@ -147,6 +147,12 @@ const chooseImages = (dataJSON) => {
 
 document.addEventListener('DOMContentLoaded',() => {
     document.getElementById('home-page').animate(fadeIn.animation, fadeIn.timing)
+    if(sessionStorage.getItem('updatedWordList') !== null) {
+        console.log('Updated word list: ')
+        const newSecretWordList = JSON.parse(sessionStorage.getItem('updatedWordList'))
+        secretWordList = newSecretWordList
+        console.log(newSecretWordList)
+    }
     console.log('DOM Loaded')
     const randomWordIndex = Math.floor(Math.random() * (secretWordList.length-1))
     secretWord = secretWordList[randomWordIndex]
@@ -168,7 +174,6 @@ guessButton.addEventListener('click', (event) => {
         event.preventDefault()
         document.getElementById('guess-text').style.WebkitAnimationPlayState = "running";
     } else {return}
-    
     guessesMade++
     let userGuess = document.getElementById('guess-text').value
     console.log(`Event input:`)
@@ -178,6 +183,7 @@ guessButton.addEventListener('click', (event) => {
         disableUserInput()
         console.log('disableUserInput function ran')
         console.log('Guesses made: '+guessesMade)
+        document.getElementById('win-text-row').innerText = `You win! ${secretWordList.length-1} left!`
         setTimeout(() => {
             document.getElementById('play-page').animate(fadeOut.animation,fadeOut.timing)
         }, 750)
@@ -252,6 +258,14 @@ document.getElementById('loss-reset-button').addEventListener('click', (event) =
 function resetGame (event) {
     if (event.target === document.getElementById('win-reset-button')) {
         console.log("User won")
+        secretWordList.splice(secretWordList.findIndex((index) => index === secretWord), 1)
+        const shorterWordList = secretWordList
+        sessionStorage.setItem('updatedWordList', JSON.stringify(shorterWordList))
+        if(secretWordList.length === 0) {
+            document.getElementById('win-text-row').style.fontSize = '7vw'
+            document.getElementById('win-text-row').innerText = 'You got every word!'
+            document.getElementById('win-reset-button').remove()
+        } 
         window.location.reload()
     }
     if (event.target === document.getElementById('loss-reset-button')) {

@@ -159,15 +159,19 @@ form {
     place-self: center;
     font-family: Reglisse;
     color: #4feff8;
-    font-size: 15vw;
+    font-size: 10vw;
 }
 
 #win-reset-button {
     margin: 0 auto;
+    position: absolute;
+    place-self: center;
+    transform: translate(0px, 150%);
     justify-content: center;
     display: flex;
     width: 150px;
     height: 120px;
+    font-family: Reglisse;
     font-size: 50px;
     line-height: 50px;
     border-radius: 40px;
