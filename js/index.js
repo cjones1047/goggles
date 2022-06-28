@@ -63,6 +63,8 @@ let guessesMade = 0;
 
 const guessButton = document.getElementById('guess-button')
 
+
+// different animations listed below
 const imageFading = {
     animation: [
         {opacity: 1},
@@ -114,7 +116,7 @@ const flipHint = {
     }
 }
 
-document.getElementById('play-icon').addEventListener('click',event => {
+document.getElementById('play-icon').addEventListener('click',event => {  // what happens when 'play' button is clicked
     document.getElementById('play-icon').style.WebkitAnimationPlayState = "running";
     setTimeout(() => {
         document.getElementById('home-page').style.WebkitAnimationPlayState = "running"
@@ -134,7 +136,7 @@ document.getElementById('play-icon').addEventListener('click',event => {
 })
 
 const chooseImages = (dataJSON) => {
-    for(let i=hintImagesUrls.length;hintImagesUrls.length<6;i++) { // only 6 images hints in total
+    for(let i=hintImagesUrls.length;hintImagesUrls.length<6;i++) { // only 6 image hints in total chosen for each secret word, filtered by the url ending in 'jpg' and being classified as a 'media domain'
         if(dataJSON.data.children[i].data.url.slice(-3) === 'jpg') {
             if(dataJSON.data.children[i].data.is_reddit_media_domain === true
             && hintImagesUrls.find(element => element === dataJSON.data.children[i].data.url) === undefined) {
@@ -145,7 +147,7 @@ const chooseImages = (dataJSON) => {
     }
 }
 
-document.addEventListener('DOMContentLoaded',() => {
+document.addEventListener('DOMContentLoaded',() => { // pulls image hint data while randomly selecting word on initial load screen, so pulling JSON data doesn't slow down gameplay
     document.getElementById('home-page').animate(fadeIn.animation, fadeIn.timing)
     if(sessionStorage.getItem('updatedWordList') !== null) {
         console.log('Updated word list: ')
@@ -178,7 +180,7 @@ guessButton.addEventListener('click', (event) => {
     let userGuess = document.getElementById('guess-text').value
     console.log(`Event input:`)
     console.log(userGuess)
-    if(userGuess.toLowerCase() === secretWord) { // user's guess is correct
+    if(userGuess.toLowerCase() === secretWord) { // if user's guess is correct
         console.log('winner')
         disableUserInput()
         console.log('disableUserInput function ran')
@@ -195,7 +197,7 @@ guessButton.addEventListener('click', (event) => {
             return
         }, 2400)
 
-    } else {   // user's guess is wrong
+    } else {   // if user's guess is wrong
         console.log('Guesses made: '+guessesMade)
         document.getElementById('guess-text').value = null
         if(guessesMade === 3) {
@@ -233,7 +235,7 @@ guessButton.addEventListener('click', (event) => {
     }
 })
 
-function disableUserInput () {
+function disableUserInput () { // happens right when you guess correctly so that you can't change it to a wrong guess
     const parent = document.getElementById('guess-section')
     const child = document.getElementById('guess-input')
     const newEl = document.createElement('fieldset')
@@ -243,20 +245,20 @@ function disableUserInput () {
     console.log('user input disabled')
 }
 
-document.getElementById('win-reset-button').addEventListener('click', (event) => {
+document.getElementById('win-reset-button').addEventListener('click', (event) => {  // reset button on win page
     event.preventDefault()
     resetGame(event)
 
 })
 
-document.getElementById('loss-reset-button').addEventListener('click', (event) => {
+document.getElementById('loss-reset-button').addEventListener('click', (event) => { // reset button on loss page
     event.preventDefault()
     resetGame(event)
 
 })
 
 function resetGame (event) {
-    if (event.target === document.getElementById('win-reset-button')) {
+    if (event.target === document.getElementById('win-reset-button')) { // resets the game to initial page and sends the new secret word list (shortened by the words you got right) into session storage so as long as your tab stays open, your progress is tracked
         console.log("User won")
         secretWordList.splice(secretWordList.findIndex((index) => index === secretWord), 1)
         const shorterWordList = secretWordList
