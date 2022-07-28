@@ -1,4 +1,8 @@
-
+/* Default 'Reglisse' font-family below */
+@font-face {
+	font-family: 'Reglisse';
+	src: url('./Reglisse-0WOD9.otf');
+}
 
 body {
     background-size: 100% 100vh;
