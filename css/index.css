@@ -5,10 +5,39 @@
 }
 
 body {
-    background-size: 100% 100vh;
-    background-image: url(../background-image/background.png);
     color: rgb(113, 103, 103);
     text-shadow: 0px 2px 0px rgb(255, 255, 255);
+}
+
+/* Mobile first */
+body:after{
+    content:"";
+    position:fixed; /* stretch a fixed position to the whole screen */
+    top:0;
+    height:100vh; /* fix for mobile browser address bar appearing disappearing */
+    left:0;
+    right:0;
+    z-index:-1; /* needed to keep in the background */
+    background: url('../background-image/background.png') center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+/* Then tablets, laptops and desktops (768px and up) */
+@media screen and (min-width:768px) {
+    body {
+        /* background-size: cover 100vh;
+        background-attachment: fixed; */
+        width: 100%;
+        height: 100%;
+        background: url('../background-image/background.png') no-repeat;
+        background-attachment: fixed;
+        background-position: center center;
+        background-size: cover;
+        /* background: url('../assets/finance-background.jpeg') no-repeat center center fixed; */
+    }
 }
 
 #home-page {
@@ -21,8 +50,8 @@ body {
 }
 
 #header {
-    height: 30%;
-    font-size: 120px;
+    margin-top: 5%;
+    font-size: 12vw;
     font-family: Reglisse;
     color: rgb(146, 146, 146);
 }

@@ -156,19 +156,24 @@ document.addEventListener('DOMContentLoaded',() => { // pulls image hint data wh
         console.log(newSecretWordList)
     }
     console.log('DOM Loaded')
-    const randomWordIndex = Math.floor(Math.random() * (secretWordList.length-1))
-    secretWord = secretWordList[randomWordIndex]
-    console.log('Random word selected: '+secretWord)
+    function validateWordResponse () {
+        const randomWordIndex = Math.floor(Math.random() * (secretWordList.length-1))
+        secretWord = secretWordList[randomWordIndex]
+        console.log('Random word selected: '+secretWord)
+        
+        fetch(`https://www.reddit.com/r/pics/search.json?q=${secretWord}+nsfw:no&limit=100`) 
+            .then((responseData)=> responseData.json())
+            .then((jsonData)=>{
+                console.log(jsonData) 
+                chooseImages(jsonData)
+            })
+            .catch((err) => {
+                console.log('ERROR: Reselecting secret word...')
+                validateWordResponse()
+            })
+    }
+    validateWordResponse()
     
-    fetch(`https://www.reddit.com/r/pics/search.json?q=${secretWord}+nsfw:no&limit=100`) 
-        .then((responseData)=> responseData.json())
-        .then((jsonData)=>{
-            console.log(jsonData) 
-            chooseImages(jsonData)
-        })
-        .catch((jsonData) => {
-            console.log('ERROR')
-        })
 })
 
 guessButton.addEventListener('click', (event) => {
